@@ -7,39 +7,29 @@ The AOP extension is designed to be the easiest way you can think of for integra
 
 AOP aims to allow separation of cross-cutting concerns (cache, log, security, transactions, ...)
 
-[![Build Status](https://secure.travis-ci.org/AOP-PHP/AOP.png?branch=master)](http://travis-ci.org/AOP-PHP/AOP)
-
 ## Installation ##
-
-You can use pecl
-
-```sh
-    sudo pecl install aop-beta
-```
-
-or
 
 Download the AOP from github, compile and add the extension to your php.ini
 
-```sh
-    #Clone the repository on your computer
-    git clone https://github.com/AOP-PHP/AOP
-    cd AOP
-    #prepare the package, you will need to have development tools for php
-    phpize
-    #compile the package
-    ./configure
-    make
-    #before the installation, check that it works properly
-    make test
-    #install
-    make install
+```shell
+#Clone the repository on your computer
+git clone https://github.com/dreamsxin/aop
+cd aop
+#prepare the package, you will need to have development tools for php
+phpize
+#compile the package
+./configure
+make
+#before the installation, check that it works properly
+make test
+#install
+make install
 ```
 
 Now you can add the following line to your php.ini to enables AOP
 
 ```ini
-    extension=AOP.so
+extension=aop.so
 ```
 
 ## What is AOP ? Basic tutorial ##
@@ -124,8 +114,8 @@ Now le's try the examples :
     $_SESSION['user_type'] = 'admin';//again, this is ugly for the sake of the example
 
     try {
-       $service->doAdminStuff1();
-       $service->doAdminStuff2();
+       $services->doAdminStuff1();
+       $services->doAdminStuff2();
     } catch (Exception $e) {
        //nothing will be caught here, we are an admin
     }

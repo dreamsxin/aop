@@ -72,6 +72,7 @@ typedef struct  {
    aop_func_info *original;
    zend_execute_data *execute_data;
    zval *retval_ptr;
+   zval exception;
 } aop_joinpoint_object;
 
 
@@ -105,13 +106,15 @@ PHP_FUNCTION(aop_add_after_throwing);
 aop_joinpoint_object * php_aop_joinpoint_object_fetch_object(zend_object *obj); 
 #define Z_AOP_JOINPOINT_OBJ_P(zv) php_aop_joinpoint_object_fetch_object(Z_OBJ_P(zv));
 
+void test_pointcut_and_execute(Bucket *p, zend_execute_data *execute_data, aop_func_info *original, zval *retval_ptr TSRMLS_DC);
+
 void (*aop_old_execute_ex)(zend_execute_data *execute_data TSRMLS_DC);
 void aop_execute_ex(zend_execute_data *execute_data TSRMLS_DC);
 
 void (*aop_old_execute_internal)(zend_execute_data *current_execute_data, zval *return_value);
 void aop_execute_internal(zend_execute_data *current_execute_data, zval *return_value);
 
-static zval_pointcut_dtor(zval *zv); 
+static void zval_pointcut_dtor(zval *zv); 
 
 extern zend_module_entry aop_module_entry;
 #define phpext_aop_ptr &aop_module_entry
